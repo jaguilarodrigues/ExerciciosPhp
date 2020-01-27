@@ -17,7 +17,7 @@ class TextWrapTest extends TestCase {
    */
   public function setUp() {
     $this->resolucao = new Resolucao();
-    $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
+    $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigante";
   }
 
   /**
@@ -67,4 +67,62 @@ class TextWrapTest extends TestCase {
     $this->assertCount(6, $ret);
   }
 
+  /**
+   * Testa a quebra de linha para palavras limite de linha para 1.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForLimitOne() {
+    $ret = $this->resolucao->textWrap($this->baseString, 1);
+    $this->assertEquals("S", $ret[0]);
+    $this->assertEquals("e", $ret[1]);
+    $this->assertEquals("v", $ret[2]);
+    $this->assertEquals("i", $ret[3]);
+    $this->assertEquals("m", $ret[4]);
+    $this->assertEquals("a", $ret[5]);
+    $this->assertEquals("i", $ret[6]);
+    $this->assertEquals("s", $ret[7]);
+    $this->assertEquals("l", $ret[8]);
+    $this->assertEquals("o", $ret[9]);
+    $this->assertEquals("n", $ret[10]);
+    $this->assertEquals("g", $ret[11]);
+    $this->assertEquals("e", $ret[12]);
+    $this->assertEquals("f", $ret[13]);
+    $this->assertEquals("o", $ret[14]);
+    $this->assertEquals("i", $ret[15]);
+    $this->assertEquals("p", $ret[16]);
+    $this->assertEquals("o", $ret[17]);
+    $this->assertEquals("r", $ret[18]);
+    $this->assertEquals("e", $ret[19]);
+    $this->assertEquals("s", $ret[20]);
+    $this->assertEquals("t", $ret[21]);
+    $this->assertEquals("a", $ret[22]);
+    $this->assertEquals("r", $ret[23]);
+    $this->assertEquals("d", $ret[24]);
+    $this->assertEquals("e", $ret[25]);
+    $this->assertEquals("p", $ret[26]);
+    $this->assertEquals("é", $ret[27]);
+    $this->assertEquals("s", $ret[28]);
+    $this->assertEquals("o", $ret[29]);
+    $this->assertEquals("b", $ret[30]);
+    $this->assertEquals("r", $ret[31]);
+    $this->assertEquals("e", $ret[32]);
+    $this->assertEquals("o", $ret[33]);
+    $this->assertEquals("m", $ret[34]);
+    $this->assertEquals("b", $ret[35]);
+    $this->assertEquals("r", $ret[36]);
+    $this->assertEquals("o", $ret[37]);
+    $this->assertEquals("s", $ret[38]);
+    $this->assertEquals("d", $ret[39]);
+    $this->assertEquals("e", $ret[40]);
+    $this->assertEquals("g", $ret[41]);
+    $this->assertEquals("i", $ret[42]);
+    $this->assertEquals("g", $ret[43]);
+    $this->assertEquals("a", $ret[44]);
+    $this->assertEquals("n", $ret[45]);
+    $this->assertEquals("t", $ret[46]);
+    $this->assertEquals("e", $ret[47]);
+    $this->assertEquals("s", $ret[48]);
+  }
+  
 }
