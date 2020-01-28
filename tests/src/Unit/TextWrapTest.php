@@ -130,7 +130,7 @@ class TextWrapTest extends TestCase {
   }*/
   
   /**
-   * Testa a quebra de linha para palavras grandes(texto completo) limite de linha para 60.
+   * Testa a quebra de linha para palavras grandes(texto completo) limite de linha para 62 total de letras + acento.
    *
    * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
    */
@@ -140,4 +140,76 @@ class TextWrapTest extends TestCase {
     $this->assertEquals("Se vi mais longe foi por estar de pé sobre ombros de gigantes", $ret[0]);
     $this->assertCount(1, $ret);
   }
+
+  /**
+   * Testa a quebra de linha para palavras com limite de linha para 25.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  
+  public function testForWordLimit25() {
+    $ret = $this->resolucao->textWrap($this->baseString, 25);
+    $this->assertEquals("Se vi mais longe foi por", $ret[0]);
+    $this->assertEquals("estar de pé sobre ombros", $ret[1]);
+    $this->assertEquals("de gigantes", $ret[2]);   
+    $this->assertCount(3, $ret);
+  }
+
+  /**
+   * Testa a quebra de linha para palavras com limite de linha para 5.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  
+  public function testForWordLimit5() {
+    $ret = $this->resolucao->textWrap($this->baseString, 5);
+    $this->assertEquals("Se vi", $ret[0]);
+    $this->assertEquals("mais", $ret[1]);
+    $this->assertEquals("longe", $ret[2]);
+    $this->assertEquals("foi", $ret[3]);
+    $this->assertEquals("por", $ret[4]);
+    $this->assertEquals("estar", $ret[5]);
+    $this->assertEquals("de", $ret[6]);
+    $this->assertEquals("pé", $ret[7]);
+    $this->assertEquals("sobre", $ret[8]);
+    $this->assertEquals("ombro", $ret[9]);
+    $this->assertEquals("s de", $ret[10]);
+    $this->assertEquals("gigan", $ret[11]);
+    $this->assertEquals("tes", $ret[12]);
+    $this->assertCount(13, $ret);
+  }
+
+  /**
+   * Testa a quebra de linha para palavras com limite de linha para 3.
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  
+  public function testForWordLimit3() {
+    $ret = $this->resolucao->textWrap($this->baseString, 3);
+    $this->assertEquals("Se", $ret[0]);
+    $this->assertEquals("vi", $ret[1]);
+    $this->assertEquals("mai", $ret[2]);
+    $this->assertEquals("s", $ret[3]);
+    $this->assertEquals("lon", $ret[4]);
+    $this->assertEquals("ge", $ret[5]);
+    $this->assertEquals("foi", $ret[6]);
+    $this->assertEquals("por", $ret[7]);
+    $this->assertEquals("est", $ret[8]);
+    $this->assertEquals("ar", $ret[9]);
+    $this->assertEquals("de", $ret[10]);
+    $this->assertEquals("pé", $ret[11]);
+    $this->assertEquals("sob", $ret[12]);
+    $this->assertEquals("re", $ret[13]);
+    $this->assertEquals("omb", $ret[14]);
+    $this->assertEquals("ros", $ret[15]);
+    $this->assertEquals("de", $ret[16]);
+    $this->assertEquals("gig", $ret[17]);
+    $this->assertEquals("ant", $ret[18]);
+    $this->assertEquals("es", $ret[19]);
+    $this->assertCount(20, $ret);
+  }
+
+ 
+
 }
