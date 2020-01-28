@@ -31,15 +31,34 @@ class Resolucao implements TextWrapInterface {
 
         if($length_line + $length_word <= $length)
         {
-            if($new_word == "")
-                $new_word = $new_word . $words[$i];
-            else
-                $new_word = $new_word . ' ' . $words[$i];
+          if($new_word == "")
+              $new_word = $new_word . $words[$i];
+          else
+              $new_word = $new_word . ' ' . $words[$i];
                 
-            $length_line=strlen($new_word);
+          $length_line=strlen($new_word);
 
         }else{
-            //palavras grandes
+          $k = 0;
+          for ($j = 0; $j < $length_word; $j++)
+          {
+              
+              if($k < $length)
+              {
+                  $new_word = $new_word . $words[$i][$j]; 
+                  $k++;
+              }else
+              {
+                  
+                  if($j < $length_word){
+                      array_push($text_final, $new_word);
+                      $new_word = "";
+                  }
+                  $j--;
+                  $k=0;
+                  
+              }        
+          }
         }
 
         if($i == $number_words - 1 || $i < $number_words - 1 && (strlen($new_word) + strlen($words[$i+1]) + 1) > $length)
@@ -50,6 +69,7 @@ class Resolucao implements TextWrapInterface {
         }
       }
     }
+   
       return $text_final;
   }
 
